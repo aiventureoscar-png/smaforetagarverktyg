@@ -1,0 +1,23 @@
+<!doctype html><html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Momsräknare – räkna moms 25, 12 och 6 %</title><meta name="description" content="Gratis momsräknare: lägg på eller dra av moms (25 %, 12 %, 6 %). Se belopp exklusive och inklusive moms direkt."><link rel="stylesheet" href="style.css"></head><body>
+<header><a href="./">Småföretagarverktyg</a></header><nav><a href="momsraknare.html">Momsräknare</a><a href="timpris.html">Timpriskalkylator</a><a href="./#mallar">Gratis mallar</a></nav>
+<main>
+<h1>Momsräknare</h1>
+<div class="card">
+<label for="b">Belopp (kr)</label><input id="b" type="number" inputmode="decimal" value="1000">
+<label for="r">Momssats</label><select id="r"><option value="25">25 % (normalsats)</option><option value="12">12 % (reducerad sats)</option><option value="6">6 % (reducerad sats)</option></select>
+<label for="m">Beloppet är</label><select id="m"><option value="ex">exklusive moms (lägg på moms)</option><option value="ink">inklusive moms (dra av moms)</option></select>
+<table><tr><td>Exklusive moms</td><td class="v" id="oEx"></td></tr><tr><td>Moms</td><td class="v" id="oM"></td></tr><tr><td>Inklusive moms</td><td class="v" id="oInk"></td></tr></table>
+</div>
+<h2>Så räknar du moms</h2>
+<p><b>Lägga på moms:</b> pris inklusive moms = pris exklusive moms × (1 + momssats). Exempel: 1 000 kr × 1,25 = 1 250 kr.</p>
+<p><b>Dra av moms:</b> momsen i ett belopp inklusive moms = beloppet × momssats ÷ (1 + momssats). Vid 25 % är det 20 % av beloppet, vid 12 % ungefär 10,71 % och vid 6 % ungefär 5,66 %.</p>
+<p class="note">Vilken momssats som gäller beror på vad du säljer. Kontrollera alltid på <a href="https://www.skatteverket.se/" rel="noopener">skatteverket.se</a>, eftersom satserna kan ändras.</p>
+<script>
+const f=n=>n.toLocaleString('sv-SE',{minimumFractionDigits:2,maximumFractionDigits:2})+' kr';
+function c(){const b=parseFloat(document.getElementById('b').value.replace(',','.'))||0,r=+document.getElementById('r').value/100,ink=document.getElementById('m').value==='ink';
+const ex=ink?b/(1+r):b,m=ex*r;oEx.textContent=f(ex);oM.textContent=f(m);oInk.textContent=f(ex+m);}
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',c));c();
+</script></main><footer>Gratis verktyg för enskilda firmor och småföretag. Inga cookies, ingen spårning – beräkningarna sker i din webbläsare.
+Sajten och verktygen är skapade med hjälp av AI och granskade mot Skatteverkets uppgifter, men kan innehålla fel. De är hjälpmedel och ersätter inte rådgivning från redovisningskonsult eller Skatteverket.
+<a href="integritet.html">Integritet</a></footer></body></html>

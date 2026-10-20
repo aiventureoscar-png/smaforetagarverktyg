@@ -1,0 +1,23 @@
+<!doctype html><html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Timpriskalkylator för enskild firma och frilansare</title><meta name="description" content="Räkna ut vilket timpris du behöver ta som egenföretagare utifrån önskad inkomst, kostnader och debiterbara timmar."><link rel="stylesheet" href="style.css"></head><body>
+<header><a href="./">Småföretagarverktyg</a></header><nav><a href="momsraknare.html">Momsräknare</a><a href="timpris.html">Timpriskalkylator</a><a href="./#mallar">Gratis mallar</a></nav>
+<main>
+<h1>Timpriskalkylator</h1>
+<p>Räkna fram vilket timpris (exklusive moms) du behöver för att få ihop den årsomsättning du vill nå. Glöm inte att du som egenföretagare själv betalar egenavgifter, skatt, pension och försäkringar och står för semester och sjukdagar. Därför ska du räkna med <em>överskottet före skatt</em> som du behöver.</p>
+<div class="card">
+<label for="inc">Önskat överskott före skatt och egenavgifter per år (kr)</label><input id="inc" type="number" value="500000">
+<label for="cost">Företagets kostnader per år (kr, exkl. moms) – lokal, verktyg, försäkring, pension m.m.</label><input id="cost" type="number" value="60000">
+<label for="wk">Arbetsveckor per år (efter semester, helgdagar och sjukdagar)</label><input id="wk" type="number" value="44">
+<label for="h">Arbetstimmar per vecka</label><input id="h" type="number" value="40">
+<label for="pct">Andel debiterbar tid (%) – resten går till admin, sälj och resor</label><input id="pct" type="number" value="70">
+<table><tr><td>Behövd omsättning per år</td><td class="v" id="oT"></td></tr><tr><td>Debiterbara timmar per år</td><td class="v" id="oH"></td></tr><tr><td><b>Lägsta timpris (exkl. moms)</b></td><td class="v" id="oP"></td></tr><tr><td>Timpris inkl. 25 % moms</td><td class="v" id="oPm"></td></tr></table>
+</div>
+<p class="note">Formel: timpris = (önskat överskott + kostnader) ÷ (arbetsveckor × timmar per vecka × andel debiterbar tid). Resultatet är ett lägsta pris. Det är ingen prisrekommendation och tar inte hänsyn till vad marknaden betalar i din bransch. Hur mycket som blir kvar efter skatt och egenavgifter beror på din kommun och dina avdrag. Läs mer om egenavgifter på <a href="https://www.skatteverket.se/" rel="noopener">skatteverket.se</a>.</p>
+<script>
+const v=id=>parseFloat(document.getElementById(id).value)||0,f=(n,d=0)=>n.toLocaleString('sv-SE',{maximumFractionDigits:d,minimumFractionDigits:d});
+function c(){const T=v('inc')+v('cost'),H=v('wk')*v('h')*v('pct')/100;oT.textContent=f(T)+' kr';oH.textContent=f(H);
+const p=H>0?T/H:0;oP.textContent=f(p)+' kr/tim';oPm.textContent=f(p*1.25)+' kr/tim';}
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',c));c();
+</script></main><footer>Gratis verktyg för enskilda firmor och småföretag. Inga cookies, ingen spårning – beräkningarna sker i din webbläsare.
+Sajten och verktygen är skapade med hjälp av AI och granskade mot Skatteverkets uppgifter, men kan innehålla fel. De är hjälpmedel och ersätter inte rådgivning från redovisningskonsult eller Skatteverket.
+<a href="integritet.html">Integritet</a></footer></body></html>
